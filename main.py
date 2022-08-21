@@ -9,7 +9,7 @@ import os
 import random
 
 
-today = datetime.now()
+today = datetime.date.today()
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
 birthday = os.environ['BIRTHDAY']
@@ -52,7 +52,7 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
 data = {
- "today":{"value":datetime.date.today(),"color":get_random_color()}, 
+ "today":{"value":today,"color":get_random_color()}, 
 "weather":{"value":wea, "color":get_random_color()},
 "temperature":{"value":temperature, "color":get_random_color()},
 "love_days":{"value":get_count(), "color":get_random_color()},
