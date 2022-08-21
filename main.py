@@ -43,13 +43,17 @@ def get_words():
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
+def get_today(){
+  return today.year+"."+today.month+"."+today.day 
+}
 
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
+ty=get_today()
 data = {
-"today":{"value":today.day,"color":get_random_color()},
+"today":{"value":ty,"color":get_random_color()},
 "weather":{"value":wea, "color":get_random_color()},
 "temperature":{"value":temperature, "color":get_random_color()},
 "love_days":{"value":get_count(), "color":get_random_color()},
