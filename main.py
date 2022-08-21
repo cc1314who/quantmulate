@@ -1,4 +1,6 @@
 from datetime import date, datetime
+import datetime
+import time
 import math
 from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatMessage, WeChatTemplate
@@ -6,6 +8,7 @@ import requests
 import os
 import random
 
+now = datetime.date.today()
 today = datetime.now()
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
@@ -49,7 +52,7 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
 data = {
- "today":{"value":today,"color":get_random_color()}, 
+ "today":{"value":now,"color":get_random_color()}, 
 "weather":{"value":wea, "color":get_random_color()},
 "temperature":{"value":temperature, "color":get_random_color()},
 "love_days":{"value":get_count(), "color":get_random_color()},
