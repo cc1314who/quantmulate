@@ -1,4 +1,4 @@
-import datetime
+from datetime import date, datetime,timedelta
 import math
 from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatMessage, WeChatTemplate
@@ -6,7 +6,7 @@ import requests
 import os
 import random
 
-today = (datetime.datetime.now()+ datetime.timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S') 
+today = datetime.now()+timedelta(hours=8)
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
 birthday = os.environ['BIRTHDAY']
@@ -25,10 +25,14 @@ def get_weather():
   return weather['weather'], math.floor(weather['temp'])
 
 def get_count():
-  delta = today - datetime.datetime.strptime(start_date, "%Y-%m-%d")
+  delta = today - datetime.strptime(start_date, "%Y-%m-%d")
   return delta.days
 
-
+def get_birthday():
+  next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
+  if next < datetime.now():
+    next = next.replace(year=next.year + 1)
+  return (next - today).days
 
 def get_words():
   words = requests.get("https://api.shadiao.pro/chp")
@@ -38,8 +42,6 @@ def get_words():
 
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
-
-
 
 
 client = WeChatClient(app_id, app_secret)
