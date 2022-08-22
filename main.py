@@ -52,7 +52,7 @@ wm = WeChatMessage(client)
 wea, temperature = get_weather()
 
 data = {
-"today":{"value":today.strftime('%a, %b %d %H:%M'),"color":get_random_color()},
+"today":{"value":today,"color":get_random_color()},
 "weather":{"value":wea, "color":get_random_color()},
 "temperature":{"value":temperature, "color":get_random_color()},
 "love_days":{"value":get_count(), "color":get_random_color()},
