@@ -5,7 +5,13 @@ from wechatpy.client.api import WeChatMessage, WeChatTemplate
 import requests
 import os
 import random
-today = datetime.now()
+utc_now = datetime.utcnow().replace(tzinfo=timezone.utc)
+SHA_TZ = timezone(
+    timedelta(hours=8),
+    name='Asia/Shanghai',
+)
+
+today = utc_now.astimezone(SHA_TZ)
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
 birthday = os.environ['BIRTHDAY']
