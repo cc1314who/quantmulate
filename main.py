@@ -35,7 +35,6 @@ def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
 def get_today():
-  return today.year+"."+today.month+"."+today.day 
   return str(today.year)+"."+str(today.month)+"."+str(today.day) 
 
 
