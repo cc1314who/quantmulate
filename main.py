@@ -23,4 +23,4 @@ my_birthday = birthday
 if my_birthday < today:#如果你今年的生日过了，加到下一年
     my_birthday = my.replace(year=today.year+1)
 time_to_birthday = abs(my - today) #算一下这两天差了多少时间戳
-
+print(time_to_birthday.days)
