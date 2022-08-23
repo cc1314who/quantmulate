@@ -12,6 +12,7 @@ SHA_TZ = timezone(
 )
 
 today = utc_now.astimezone(SHA_TZ)
+today = today.replace(tzinfo=None)
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
 birthday = os.environ['BIRTHDAY']
